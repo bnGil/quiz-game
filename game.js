@@ -1,11 +1,11 @@
 const question = document.getElementById("question");
-const choices = Array.from(document.getElementsByClassName("choice-text"));
+const choices = Array.from(document.getElementsByClassName("choice-text")); //convert node list to array
 
 let currentQuestion = {};
-let acceptingAnswers = false;
+let acceptingAnswers = false; //to make a delay after user answers a question
 let score = 0;
 let questionCounter = 0;
-let availableQuestions = [];
+let availableQuestions = []; //storing the available questions so they won't repeat themselves
 
 let questions = [
   {
@@ -35,14 +35,13 @@ let questions = [
   },
 ];
 
-const CORRECT_BONUS = 1;
-const MAX_QUESTIONS = 3;
+const CORRECT_BONUS = 1; //1 point for a correct answer
+const MAX_QUESTIONS = 3; // number of questions for a quiz
 
 startGame = () => {
   questionCounter = 0;
   score = 0;
-  availableQuestions = [...questions];
-  console.log(availableQuestions);
+  availableQuestions = [...questions]; //copy of all the questions
   getNewQuestion();
 };
 
@@ -66,6 +65,7 @@ getNewQuestion = () => {
   acceptingAnswers = true;
 };
 
+// getting user's answer
 choices.forEach((choice) => {
   choice.addEventListener("click", (e) => {
     if (!acceptingAnswers) return;
@@ -74,7 +74,17 @@ choices.forEach((choice) => {
     const selectedChoice = e.target;
     const selectedAnswer = selectedChoice.dataset["number"];
 
-    getNewQuestion();
+    let classToApply = "incorrect";
+    if (Number(selectedAnswer) === currentQuestion.answer) {
+      classToApply = "correct";
+    }
+
+    selectedChoice.parentElement.classList.add(classToApply);
+    //delay for getting a new question to show the answer's feedback
+    setTimeout(() => {
+      selectedChoice.parentElement.classList.remove(classToApply);
+      getNewQuestion();
+    }, 1000);
   });
 });
 

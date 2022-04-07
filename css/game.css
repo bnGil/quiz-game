@@ -39,6 +39,16 @@
   text-align: justify;
 }
 
+.correct {
+  box-shadow: 0 0 20px 5px green;
+  transition: all 0.7s;
+}
+
+.incorrect {
+  box-shadow: 0 0 20px 5px red;
+  transition: all 0.7s;
+}
+
 @media (max-width: 768px) {
   .btn-grid {
     display: flex;
