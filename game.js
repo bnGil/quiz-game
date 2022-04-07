@@ -49,6 +49,7 @@ startGame = () => {
 getNewQuestion = () => {
   if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
     //go to the end page
+    localStorage.setItem("mostRecentScore", score);
     return window.location.assign("/end.html");
   }
   questionCounter++;
@@ -80,14 +81,17 @@ choices.forEach((choice) => {
       classToApply = "correct";
     }
 
-    if (classToApply === "correct") {
-      incrementScore(CORRECT_BONUS);
-    }
+    // if (classToApply === "correct") {
+    //   incrementScore(CORRECT_BONUS);
+    // }
 
     selectedChoice.parentElement.classList.add(classToApply);
     //delay for getting a new question to show the answer's feedback
     setTimeout(() => {
       selectedChoice.parentElement.classList.remove(classToApply);
+      if (classToApply === "correct") {
+        incrementScore(CORRECT_BONUS);
+      }
       getNewQuestion();
     }, 1000);
   });
