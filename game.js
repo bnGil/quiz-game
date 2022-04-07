@@ -1,5 +1,6 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text")); //convert node list to array
+const scoreText = document.getElementById("score");
 
 let currentQuestion = {};
 let acceptingAnswers = false; //to make a delay after user answers a question
@@ -79,6 +80,10 @@ choices.forEach((choice) => {
       classToApply = "correct";
     }
 
+    if (classToApply === "correct") {
+      incrementScore(CORRECT_BONUS);
+    }
+
     selectedChoice.parentElement.classList.add(classToApply);
     //delay for getting a new question to show the answer's feedback
     setTimeout(() => {
@@ -87,5 +92,10 @@ choices.forEach((choice) => {
     }, 1000);
   });
 });
+
+incrementScore = (num) => {
+  score += num;
+  scoreText.innerText = score;
+};
 
 startGame();

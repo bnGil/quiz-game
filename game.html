@@ -10,6 +10,10 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Lato:wght@300&family=Nunito:wght@200;300;400;500&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/c09d2bc74f.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/game.css" />
@@ -19,6 +23,16 @@
     <div class="container">
       <!-- <div id="game" class="justify-center flex-column"> -->
       <div id="game" class="">
+        <div id="hud-container">
+          <div class="hud-item">
+            <i class="fa-regular fa-clock fa-2x"></i>
+            <h1 id="timer">00:45:01</h1>
+          </div>
+          <div class="hud-item">
+            <i class="fa-regular fa-star fa-2x"></i>
+            <h1 id="score">0</h1>
+          </div>
+        </div>
         <h2 id="question">Choose the right answer</h2>
         <div class="btn-grid">
           <div class="choice-container btn">
