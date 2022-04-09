@@ -180,3 +180,13 @@ input {
 input::placeholder {
   color: #aaa;
 }
+
+@media (max-width: 768px) {
+  body {
+    height: 100vh;
+  }
+
+  .congrats-header {
+    font-size: 4rem;
+  }
+}

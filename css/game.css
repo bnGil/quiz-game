@@ -80,6 +80,12 @@
   #question {
     font-size: 3rem;
   }
+
+  #timer,
+  #score {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 }
 
 /* Loader */
