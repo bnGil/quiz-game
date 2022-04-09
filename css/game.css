@@ -8,10 +8,8 @@
 } */
 
 #game {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-  height: 70%;
+  height: 100%;
+  justify-content: space-around;
 }
 
 .hidden {
@@ -21,10 +19,19 @@
 .btn-grid {
   display: grid;
   grid-template-columns: repeat(2, 300px);
+  gap: 1rem;
+}
+
+.btn-grid .btn {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
 }
 
 .choice-container {
-  width: 80%;
+  width: 100%;
   margin: 1rem auto;
 }
 
@@ -40,9 +47,7 @@
 }
 
 #question {
-  color: var(--sec-color);
-  text-align: justify;
-  margin-bottom: 6rem;
+  text-align: center;
 }
 
 .correct {
@@ -59,7 +64,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: auto;
+  /* margin-bottom: auto; */
 }
 
 #hud-container h1 {

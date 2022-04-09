@@ -44,22 +44,25 @@ fetch("https://opentdb.com/api.php?amount=100")
   });
 
 const CORRECT_BONUS = 1; //1 point for a correct answer
-const MAX_QUESTIONS = 3; // number of questions for a quiz
 
 startGame = () => {
   questionCounter = 0;
   score = 0;
   availableQuestions = [...questions]; //copy of all the questions
+
+  let twoMinutes = 60 * 2;
+  let timerDisplay = document.getElementById("timer");
+  startTimer(twoMinutes, timerDisplay);
+
   getNewQuestion();
 };
 
 getNewQuestion = () => {
-  if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-    //go to the end page
+  if (availableQuestions.length === 0) {
+    //if ran out of questions, go to the end page
     localStorage.setItem("mostRecentScore", score);
     return window.location.assign("/end.html");
   }
-  questionCounter++;
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
   question.innerText = currentQuestion.question;
@@ -88,12 +91,8 @@ choices.forEach((choice) => {
       classToApply = "correct";
     }
 
-    // if (classToApply === "correct") {
-    //   incrementScore(CORRECT_BONUS);
-    // }
-
     selectedChoice.parentElement.classList.add(classToApply);
-    //delay for getting a new question to show the answer's feedback
+    //delay for getting a new question so the answer's feedback can be seen
     setTimeout(() => {
       selectedChoice.parentElement.classList.remove(classToApply);
       if (classToApply === "correct") {
@@ -107,4 +106,25 @@ choices.forEach((choice) => {
 incrementScore = (num) => {
   score += num;
   scoreText.innerText = score;
+};
+
+startTimer = (duration, timerDisplay) => {
+  let timer = duration,
+    minutes,
+    seconds;
+  setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    timerDisplay.innerHTML = minutes + ":" + seconds;
+
+    if (--timer < 0) {
+      timer = duration;
+      localStorage.setItem("mostRecentScore", score);
+      return window.location.assign("/end.html");
+    }
+  }, 1000);
 };
