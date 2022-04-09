@@ -86,6 +86,10 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+  #question {
+    font-size: 3rem;
+  }
 }
 
 /* Loader */

@@ -7,9 +7,7 @@ const game = document.getElementById("game");
 let currentQuestion = {};
 let acceptingAnswers = false; //to make a delay after user answers a question
 let score = 0;
-let questionCounter = 0;
 let availableQuestions = []; //storing the available questions so they won't repeat themselves
-
 let questions = [];
 
 fetch("https://opentdb.com/api.php?amount=100")
@@ -46,7 +44,6 @@ fetch("https://opentdb.com/api.php?amount=100")
 const CORRECT_BONUS = 1; //1 point for a correct answer
 
 startGame = () => {
-  questionCounter = 0;
   score = 0;
   availableQuestions = [...questions]; //copy of all the questions
 
@@ -65,11 +62,16 @@ getNewQuestion = () => {
   }
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
-  question.innerText = currentQuestion.question;
+  question.innerText = he.decode(currentQuestion.question);
 
   choices.forEach((choice) => {
     const number = choice.dataset["number"];
-    choice.innerText = currentQuestion["choice" + number];
+    if (currentQuestion["choice" + number]) {
+      choice.innerText = he.decode(currentQuestion["choice" + number]);
+      choice.parentElement.style.display = "flex";
+    } else {
+      choice.parentElement.style.display = "none";
+    }
   });
 
   availableQuestions.splice(questionIndex, 1);

@@ -1,0 +1,23 @@
+{
+  "name": "quiz-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "end.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bnGil/quiz-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bnGil/quiz-game/issues"
+  },
+  "homepage": "https://github.com/bnGil/quiz-game#readme",
+  "dependencies": {
+    "he": "^1.2.0"
+  }
+}
