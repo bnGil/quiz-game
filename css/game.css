@@ -35,6 +35,8 @@
 .choice-text {
   padding: 1.5rem;
   color: var(--sec-color);
+  width: 100%;
+  /* margin: auto; */
 }
 
 #question {
